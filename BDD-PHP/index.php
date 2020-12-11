@@ -13,8 +13,12 @@
 <?php 
 include 'db/db.php';
 global $conn;
+global $servername;
+global $username;
+global $password;
 global $debugmod;
 global $dbtable1;
+global $dbname;
 ?>
 
 <h1>RESERVATION POUR L'HOTEL MEH ZEBI</h1>
@@ -49,6 +53,8 @@ global $dbtable1;
 
     }
 
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
     // SQL Command
     $sql = "INSERT INTO " . $dbtable1 ."(clientFirstName, clientLastName, clientemail, resadate) VALUES('".$_POST["lastname"]."','".$_POST["firstname"]."','".$_POST["email"]."','".$_POST["date"]."')";
     // Query Command
@@ -61,6 +67,7 @@ global $dbtable1;
         echo "Error: " . $sql . "<br>" . $conn->error;
       }
     }
+    $conn->close(); // Kill Connection
   }
 ?>
 
@@ -79,6 +86,9 @@ global $dbtable1;
 
 <?php
     // SQL Command
+    
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
     $sql = "SELECT * FROM " . $dbtable1;
     $q = $conn->query($sql);
     while($resa = $q->fetch_assoc())
@@ -89,7 +99,9 @@ global $dbtable1;
         </tr>
         </form>
 
-<?php }
+<?php 
+$conn->close(); // Kill connection
+}
 ?>
 </table>
 <br>
@@ -103,6 +115,8 @@ global $dbtable1;
   <?php     
   if(isset($_POST['delete'])){
       // SQL Command
+      $conn = new mysqli($servername, $username, $password, $dbname);
+
       $sql = "DELETE FROM " . $dbtable1 ." WHERE clientId = " . $_POST['ID'];         
       if ($conn->query($sql) === TRUE) {
         echo '<meta http-equiv="Refresh" CONTENT="0.01; url=">';
@@ -112,6 +126,7 @@ global $dbtable1;
           echo "Error : " . $sql . "<br>" . $conn->error;
        }
      }
+     $conn->close(); // Kill connection
    }
 ?>
 </form>
@@ -142,6 +157,8 @@ global $dbtable1;
       echo "<script>alert('UPDATE : \\nNom : ". $lastname . "\\nPrénom " . $firstname . "\\nEmail : " . $email . "\\nDate : " . $date . "')</script>";
 
     }
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
     $sql = "UPDATE " . $dbtable1 . " SET clientFirstName = '" . $firstname . "', clientLastName = '" . $lastname . "', clientemail = '" . $email . "', resadate = '" . $date . "' WHERE clientId = " . $id;
     if ($conn->query($sql) === TRUE) {
@@ -176,6 +193,7 @@ global $dbtable1;
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
     echo '<meta http-equiv="Refresh" CONTENT="0.01; url=">';
+    $conn->close();
 }
 ?>
 

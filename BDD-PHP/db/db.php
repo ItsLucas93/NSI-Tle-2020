@@ -32,7 +32,11 @@ if ($conn->connect_error) { // Check if the connection is OK, if isn't, send err
 	$connected = TRUE;
 }
 
+$conn->close(); // Kill connection
+
 // Create Table if not already exist
+
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($connected == TRUE && $dbname != "") {
 	$sql = "CREATE TABLE IF NOT EXISTS ". $dbtable1 ." (clientId INTEGER PRIMARY KEY AUTO_INCREMENT, clientFirstName VARCHAR(255) NOT NULL, clientLastName VARCHAR(255) NOT NULL, clientemail VARCHAR(255) NOT NULL, resadate DATE NOT NULL);"; // SQL Command
@@ -43,4 +47,7 @@ if ($connected == TRUE && $dbname != "") {
 		echo "Error creating Table: " . $conn->error;
 	}
 }
+
+$conn->close(); // Kill connection
+
 ?> 
