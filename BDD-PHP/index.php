@@ -99,9 +99,9 @@ global $dbname;
         </tr>
         </form>
 
-<?php 
+<?php }
 $conn->close(); // Kill connection
-}
+
 ?>
 </table>
 <br>
