@@ -70,7 +70,7 @@ global $dbtable1;
 ?>
 
 <br>
-<br>
+
 <!-- Display Data from DB -->
 <table>
   <h2>LISTE DES RESERVATIONS MEH ZEBI</h2>
@@ -122,7 +122,7 @@ global $dbtable1;
 </form>
 
 <!-- Update data in DB -->
-<!-- <h2>MODIFIER UNE INFO MEH ZEBI</h2>
+<h2>MODIFIER UNE INFO MEH ZEBI</h2>
 <form method="post">
   <input type="number" name="id_update" id="id_update" placeholder="N°ID" required>
   <input type="text" name="lastname" id="lastname" placeholder="Last Name" required>
@@ -153,7 +153,7 @@ global $dbtable1;
 
     }
 
-    $sql = "UPDATE " . $dbtable1 . " SET clientFirstName = '" . $firstname . "', clientLastName = '" . $lastname . "', clientemail = '" . $email . "', resadate = '" . $date . "' WHERE id = " . $id;
+    $sql = "UPDATE " . $dbtable1 . " SET clientFirstName = '" . $firstname . "', clientLastName = '" . $lastname . "', clientemail = '" . $email . "', resadate = '" . $date . "' WHERE clientId = " . $id;
     if ($conn->query($sql) === TRUE) {
       if ($debugmod == TRUE) { 
         echo "New record created successfully"; 
@@ -161,8 +161,33 @@ global $dbtable1;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-  }
-?> -->
+    $sql = "UPDATE " . $dbtable1 . " SET clientLastName = '" . $lastname . "' WHERE clientId = " . $id;
+    if ($conn->query($sql) === TRUE) {
+      if ($debugmod == TRUE) { 
+        echo "New record created successfully"; 
+      }
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $sql = "UPDATE " . $dbtable1 . " SET clientemail = '" . $email . "' WHERE clientId = " . $id;
+    if ($conn->query($sql) === TRUE) {
+      if ($debugmod == TRUE) { 
+        echo "New record created successfully"; 
+      }
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $sql = "UPDATE " . $dbtable1 . " SET resadate = '" . $date . "' WHERE clientId = " . $id;
+    if ($conn->query($sql) === TRUE) {
+      if ($debugmod == TRUE) { 
+        echo "New record created successfully"; 
+      }
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    echo '<meta http-equiv="Refresh" CONTENT="0.01; url=">';
+}
+?>
 
 </body>
 </html>
