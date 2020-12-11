@@ -46,11 +46,6 @@ global $dbtable1;
     // Display Alert box with data
     if(!empty($lastname) && !empty($firstname) && !empty($email) && !empty($date)) {
       echo "<script>alert('Votre réservation : \\nNom : ". $lastname . "\\nPrénom " . $firstname . "\\nEmail : " . $email . "\\nDate : " . $date . "')</script>";
-/*      echo "Nom : " . $lastname . "<br/>";
-      echo "Prénom : " . $firstname . "<br/>";
-      echo "Email : " . $email . "<br/>";
-      echo "Date : " . $date . "<br/>";
-*/
 
     }
 
@@ -145,11 +140,6 @@ global $dbtable1;
 
     if(!empty($id) && !empty($lastname) && !empty($firstname) && !empty($email) && !empty($date)) {
       echo "<script>alert('UPDATE : \\nNom : ". $lastname . "\\nPrénom " . $firstname . "\\nEmail : " . $email . "\\nDate : " . $date . "')</script>";
-/*      echo "Nom : " . $lastname . "<br/>";
-      echo "Prénom : " . $firstname . "<br/>";
-      echo "Email : " . $email . "<br/>";
-      echo "Date : " . $date . "<br/>";
-*/
 
     }
 
