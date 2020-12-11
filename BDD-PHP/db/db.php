@@ -1,6 +1,6 @@
 <?php
 
-$servername = "localhost"; // Database IP
+$servername = "localhost:3306"; // Database IP:Port
 $username = "root"; // Database username
 $password = ""; // Database password /!\ Not so secure to put that here, have to crypt it
 $dbname = "reservation"; // Database name
